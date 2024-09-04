@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庫存管理系統</title>
+</head>
+<body>
+    <h1>庫存管理系統</h1>
+    <h2>應到數據預覽：</h2>
+    {{ expected.to_html(index=False, classes='dataframe', border=0)|safe }}
+    <h2>實到數據預覽：</h2>
+    {{ actual.to_html(index=False, classes='dataframe', border=0)|safe }}
+    <h2>下載比較結果：</h2>
+    <a href="/download">下載Excel文件</a>
+</body>
+</html>

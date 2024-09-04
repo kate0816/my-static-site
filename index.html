@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上傳 Excel 文件</title>
+</head>
+<body>
+    <h1>庫存管理系統</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="expected_file">應到數據文件：</label>
+        <input type="file" name="expected_file" id="expected_file" required>
+        <br>
+        <label for="actual_file">實到數據文件：</label>
+        <input type="file" name="actual_file" id="actual_file" required>
+        <br>
+        <input type="submit" value="上傳文件">
+    </form>
+
+    <h2>產品列表</h2>
+    <ul id="product-list"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/products')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('product-list');
+                    data.forEach(product => {
+                        const li = document.createElement('li');
+                        li.textContent = product['產品簡碼'];  // 根據實際鍵名調整
+                        productList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Error fetching product list:', error));
+        });
+    </script>
+</body>
+</html>
